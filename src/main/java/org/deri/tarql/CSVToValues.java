@@ -3,6 +3,7 @@ package org.deri.tarql;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import au.com.bytecode.opencsv.CSVReader;
@@ -77,6 +78,12 @@ public class CSVToValues {
 					rownum++;
 				}
 				vars.add(TarqlQuery.ROWNUM);
+				//Make sure variables exists for all columns even if no data is available, otherwise ARQ will complain.
+				for(int i=0;i<vars.size();i++) {
+					if (vars.get(i) == null) {
+						getVar(i);
+					}	
+				}
 				return new TableData(vars, bindings);
 			} finally {
 				csv.close();
