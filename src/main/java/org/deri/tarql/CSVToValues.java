@@ -3,7 +3,6 @@ package org.deri.tarql;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import au.com.bytecode.opencsv.CSVReader;
@@ -82,7 +81,7 @@ public class CSVToValues {
 				for(int i=0;i<vars.size();i++) {
 					if (vars.get(i) == null) {
 						getVar(i);
-					}	
+					}
 				}
 				return new TableData(vars, bindings);
 			} finally {
